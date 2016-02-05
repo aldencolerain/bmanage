@@ -36,7 +36,7 @@ installbm() {
 # start all processes (and hide output)
 start() {
 	# start display
-	Xvfb :1 -screen 0 1366x768x16 -cc 4 -nolisten tcp -ac > /dev/null 2>&1 &
+	Xvfb :1 -screen 0 320x240x16 -cc 4 -nolisten tcp -ac > /dev/null 2>&1 &
 	sleep 1
 	# start vnc
 	x11vnc -noxdamage -many -usepw -display :1 > /dev/null 2>&1 &

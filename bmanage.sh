@@ -86,6 +86,11 @@ pull() {
 	cp "$BORING_SETTINGS_FOLDER/bm_settings.ini" ./settings.ini
 }
 
+# copy mapslist file into current directory
+pullmaps() {
+	cp "$BORING_SETTINGS_FOLDER/maplist.txt" ./maplist.txt
+}
+
 # copy settings file into boring man directory
 push() {
 	if [ ! -f "$BORING_SETTINGS_FOLDER/bm_settings.ini.bak" ];
@@ -115,12 +120,14 @@ fi
 # process command line arguments
 case "$1" in
 	install)                install $2;;
+    update)                 installbm;;
 	start)                  start ;;
 	stop)                   stop ;;
 	restart)                stop; sleep 1; start ;;
 	status)                 status ;;
 	update)                 start; installbm; stop;;
 	pull)                   pull;;
+    pullmaps)               pullmaps;;
 	push)                   push $2;;
 	pushmaps)               pushmaps $2;;
 	*)                      echo "Usage: $0 install myvncpassword|start|stop|restart|status|update|push|pushmaps" >&2

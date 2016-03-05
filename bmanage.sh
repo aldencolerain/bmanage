@@ -29,7 +29,7 @@ installbm() {
 	BM_VERSION="$(wget -O - http://spasmangames.com/boringman/ | grep downloads | awk -v FS='(downloads/|.zip)' '{print $2}')"
 	rm -r ~/BoringMan
 	wget http://spasmangames.com/downloads/$BM_VERSION.zip -O ~/BoringMan.zip
-	unzip ~/BoringMan.zip -d ~/.wine/drive_c/BoringMan
+	unzip -o ~/BoringMan.zip -d ~/.wine/drive_c/BoringMan
 }
 
 

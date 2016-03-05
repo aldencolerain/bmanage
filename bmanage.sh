@@ -107,6 +107,11 @@ pushmaps() {
 	cp ./$1 "$BORING_SETTINGS_FOLDER/maplist.txt"
 }
 
+# update password
+password() {
+         sed -i 's#^Password.*#Password="'"$1"'"#' "$BORING_SETTINGS_FOLDER/bm_settings.ini"
+}
+
 # check command line arguments
 if [[ "$1" == "install" && "$#" < 2 ]];
 	then echo "Please provide a vnc password when installing. Usage: $0 install myvncpassword"
@@ -130,6 +135,7 @@ case "$1" in
     pullmaps)               pullmaps;;
 	push)                   push $2;;
 	pushmaps)               pushmaps $2;;
+	password)               password $2;;
 	*)                      echo "Usage: $0 install myvncpassword|start|stop|restart|status|update|push|pushmaps" >&2
 							exit 1
 							;;

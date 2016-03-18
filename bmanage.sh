@@ -118,6 +118,11 @@ password() {
          sed -i 's#^Password.*#Password="'"$1"'"#' "$BORING_SETTINGS_FOLDER/bm_settings.ini"
 }
 
+# vnc password
+vncpassword() {
+	x11vnc -storepasswd $1 ~/.vnc/passwd
+}
+
 # check command line arguments
 if [[ "$1" == "install" && "$#" < 2 ]];
 	then echo "Please provide a vnc password when installing. Usage: $0 install myvncpassword"
@@ -147,6 +152,7 @@ case "$1" in
 	push)                   push $2;;
 	pushmaps)               pushmaps $2;;
 	password)               password $2;;
+	vncpassword)            vncpassword $2;;
 	map)                    map $2;;
 	*)                      echo "Usage: $0 install myvncpassword|start|stop|restart|status|update|push|pushmaps" >&2
 							exit 1

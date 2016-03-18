@@ -10,6 +10,8 @@ install() {
 	apt-get update && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 	apt-get install xvfb -y
 	apt-get install x11vnc -y
+	apt-get install python-pip
+	pip install requests
 	# setup vnc password
 	mkdir ~/.vnc
 	x11vnc -storepasswd $1 ~/.vnc/passwd
@@ -36,7 +38,7 @@ installbm() {
 # start all processes (and hide output)
 start() {
 	# start display
-	Xvfb :1 -screen 0 320x240x16 -cc 4 -nolisten tcp -ac > /dev/null 2>&1 &
+	Xvfb :1 -screen 0 640x480x16 -cc 4 -nolisten tcp -ac > /dev/null 2>&1 &
 	sleep 1
 	# start vnc
 	x11vnc -noxdamage -many -usepw -display :1 > /dev/null 2>&1 &
@@ -122,6 +124,11 @@ if [[ "$1" == "push" && "$#" < 2 ]];
 	exit 1
 fi
 
+# select a map
+map() {
+	echo $1 > "$BORING_SETTINGS_FOLDER/maplist.txt"
+}
+
 # process command line arguments
 case "$1" in
 	install)                install $2;;
@@ -136,6 +143,7 @@ case "$1" in
 	push)                   push $2;;
 	pushmaps)               pushmaps $2;;
 	password)               password $2;;
+	map)                    map $2;;
 	*)                      echo "Usage: $0 install myvncpassword|start|stop|restart|status|update|push|pushmaps" >&2
 							exit 1
 							;;

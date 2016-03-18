@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # settings
+USER=$(whoami)
 BORING_SETTINGS_FOLDER="$HOME/.wine/drive_c/users/$USER/Local Settings/Application Data/BoringManGame"
 
 # install
@@ -10,7 +11,7 @@ install() {
 	apt-get update && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y
 	apt-get install xvfb -y
 	apt-get install x11vnc -y
-	apt-get install python-pip
+	apt-get install python-pip -y
 	pip install requests
 	# setup vnc password
 	mkdir ~/.vnc
@@ -33,6 +34,7 @@ installbm() {
 	wget http://spasmangames.com/downloads/$BM_VERSION.zip -O ~/BoringMan.zip
 	unzip -o ~/BoringMan.zip -d ~/.wine/drive_c/BoringMan
 	# copy basic profile
+	mkdir -p "$BORING_SETTINGS_FOLDER"
 	cp profile/* "$BORING_SETTINGS_FOLDER/"
 }
 

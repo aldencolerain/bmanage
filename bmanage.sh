@@ -32,6 +32,8 @@ installbm() {
 	rm -r ~/BoringMan
 	wget http://spasmangames.com/downloads/$BM_VERSION.zip -O ~/BoringMan.zip
 	unzip -o ~/BoringMan.zip -d ~/.wine/drive_c/BoringMan
+	# copy basic profile
+	cp profile/* "$BORING_SETTINGS_FOLDER/"
 }
 
 

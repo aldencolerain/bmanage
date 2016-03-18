@@ -1,8 +1,0 @@
-bm_arena.bmap
-bm_city.bmap
-bm_factory.bmap
-bm_fields2.bmap
-bm_mines.bmap
-bm_rooftops.bmap
-bm_sand.bmap
-bm_sewers.bmap

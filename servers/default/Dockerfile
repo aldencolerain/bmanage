@@ -19,3 +19,7 @@ RUN add-apt-repository -y ppa:ubuntu-wine/ppa && apt-get update -y
 RUN git clone https://github.com/aldencolerain/bmanage
 WORKDIR bmanage
 RUN bash bmanage.sh install examplepassword
+COPY settings.ini settings.ini
+COPY maps.txt maps.txt
+RUN bash bmanage.sh push settings.ini
+RUN bash bmanage.sh pushmaps maps.txt
